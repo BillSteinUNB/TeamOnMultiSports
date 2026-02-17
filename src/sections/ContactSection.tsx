@@ -92,7 +92,7 @@ export default function ContactSection() {
               
               <div className="space-y-3">
                 <a 
-                  href="mailto:mike@teamontri.com" 
+                  href="mailto:coachmikeon@gmail.com" 
                   className="flex items-center gap-4 text-[#4A4A4A] hover:text-[#1A1A1A] transition-colors p-3 rounded-xl hover:bg-[#F5F5F5]"
                 >
                   <div className="w-10 h-10 rounded-lg bg-[#C41E3A]/10 flex items-center justify-center">
@@ -100,12 +100,12 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <div className="font-mono-label text-[10px] text-[#6B6B6B] tracking-widest mb-0.5">EMAIL</div>
-                    <div className="text-sm">mike@teamontri.com</div>
+                    <div className="text-sm">coachmikeon@gmail.com</div>
                   </div>
                 </a>
                 
                 <a 
-                  href="tel:+15550142207" 
+                  href="tel:+15064764214" 
                   className="flex items-center gap-4 text-[#4A4A4A] hover:text-[#1A1A1A] transition-colors p-3 rounded-xl hover:bg-[#F5F5F5]"
                 >
                   <div className="w-10 h-10 rounded-lg bg-[#C41E3A]/10 flex items-center justify-center">
@@ -113,7 +113,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <div className="font-mono-label text-[10px] text-[#6B6B6B] tracking-widest mb-0.5">PHONE</div>
-                    <div className="text-sm">+1 (555) 014-2207</div>
+                    <div className="text-sm">+1 (506) 476-4214</div>
                   </div>
                 </a>
                 
