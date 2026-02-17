@@ -86,7 +86,7 @@ export default function ContactSection() {
                 <img
                   src="/images/MikeWithSwimCoach.jpg"
                   alt="Coach Mike at the pool"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-[center_35%]"
                 />
               </div>
               
