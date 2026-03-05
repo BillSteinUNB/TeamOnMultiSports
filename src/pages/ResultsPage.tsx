@@ -243,7 +243,7 @@ export default function ResultsPage() {
                   <metric.icon className="w-6 h-6 text-[#C41E3A]" />
                 </div>
                 <div className="stat-number text-white mb-2">{metric.number}</div>
-                <div className="font-mono-label text-[10px] text-white/60 tracking-widest">
+                <div className="font-mono-label text-[11px] md:text-[10px] text-white/60 tracking-widest">
                   {metric.label}
                 </div>
               </div>
@@ -278,7 +278,7 @@ export default function ResultsPage() {
                 </blockquote>
                 <div className="border-t border-gray-100 pt-4">
                   <p className="font-display text-lg text-[#1A1A1A]">{t.name}</p>
-                  <p className="font-mono-label text-[10px] text-[#C41E3A] tracking-widest">
+                  <p className="font-mono-label text-[11px] md:text-[10px] text-[#C41E3A] tracking-widest">
                     {t.discipline}
                   </p>
                 </div>

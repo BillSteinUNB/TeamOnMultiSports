@@ -84,7 +84,7 @@ export default function Navigation() {
         {/* Logo */}
         <Link
           to="/"
-          className="font-mono-label text-sm text-[#1A1A1A] tracking-widest hover:text-[#C41E3A] transition-colors"
+          className="font-mono-label text-sm text-[#1A1A1A] tracking-widest hover:text-[#C41E3A] transition-colors py-3"
         >
           MIKE ON
         </Link>

@@ -262,7 +262,7 @@ export default function CoachingPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <item.icon className="w-4 h-4 text-[#6B6B6B]" />
-                    <span className="font-mono-label text-[10px] text-[#6B6B6B] tracking-widest">
+                    <span className="font-mono-label text-[11px] md:text-[10px] text-[#6B6B6B] tracking-widest">
                       {item.text.split(' ').slice(0, 2).join(' ').toUpperCase()}
                     </span>
                   </div>

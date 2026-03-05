@@ -301,7 +301,7 @@ export default function AboutPage() {
                   <pillar.icon className="w-6 h-6 text-[#C41E3A]" />
                 </div>
                 <h3 className="font-display text-2xl text-[#1A1A1A] mb-1">{pillar.title}</h3>
-                <p className="font-mono-label text-[10px] text-[#C41E3A] tracking-widest mb-4">
+                <p className="font-mono-label text-[11px] md:text-[10px] text-[#C41E3A] tracking-widest mb-4">
                   {pillar.tagline}
                 </p>
                 <p className="text-sm text-[#4A4A4A] leading-relaxed">{pillar.description}</p>
@@ -330,7 +330,7 @@ export default function AboutPage() {
             {OUTCOMES.map((item) => (
               <div key={item.label} className="about-outcome-item text-center">
                 <span className="stat-number block mb-2">{item.stat}</span>
-                <span className="font-mono-label text-[10px] text-white/70 tracking-widest">
+                <span className="font-mono-label text-[11px] md:text-[10px] text-white/70 tracking-widest">
                   {item.label}
                 </span>
               </div>

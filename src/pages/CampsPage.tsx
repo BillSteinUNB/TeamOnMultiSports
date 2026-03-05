@@ -186,7 +186,7 @@ export default function CampsPage() {
                     <camp.icon className="w-6 h-6 text-[#C41E3A]" />
                   </div>
                   <div>
-                    <p className="font-mono-label text-[10px] text-[#6B6B6B]">
+                    <p className="font-mono-label text-[11px] md:text-[10px] text-[#6B6B6B]">
                       {camp.subtitle}
                     </p>
                     <h3 className="font-display text-xl text-[#1A1A1A]">
@@ -246,7 +246,7 @@ export default function CampsPage() {
                 {/* DRAFT: Specific camp dates to be added when confirmed */}
                 <a
                   href="/apply"
-                  className="inline-flex items-center gap-2 font-mono-label text-xs text-[#C41E3A] hover:text-[#9B1B30] transition-colors"
+                  className="inline-flex items-center gap-2 py-2 font-mono-label text-xs text-[#C41E3A] hover:text-[#9B1B30] transition-colors"
                 >
                   Get Notified
                   <ChevronRight className="w-4 h-4" />
@@ -330,7 +330,7 @@ export default function CampsPage() {
                       <h3 className="font-display text-xl text-[#1A1A1A]">
                         {block.period}
                       </h3>
-                      <p className="font-mono-label text-[10px] text-[#6B6B6B]">
+                      <p className="font-mono-label text-[11px] md:text-[10px] text-[#6B6B6B]">
                         {block.time}
                       </p>
                     </div>

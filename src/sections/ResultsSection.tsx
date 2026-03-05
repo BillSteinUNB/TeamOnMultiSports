@@ -83,7 +83,7 @@ export default function ResultsSection() {
                 <stat.icon className="w-5 h-5 text-[#C41E3A]" />
               </div>
               <div className="stat-number mb-1">{stat.number}</div>
-              <div className="font-mono-label text-[10px] text-[#6B6B6B] tracking-widest">
+              <div className="font-mono-label text-[11px] md:text-[10px] text-[#6B6B6B] tracking-widest">
                 {stat.label}
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function ResultsSection() {
               {/* CTA Link */}
               <Link
                 to="/results"
-                className="inline-flex items-center gap-2 mt-8 font-mono-label text-xs tracking-widest text-[#C41E3A] hover:text-[#9B1B30] transition-colors group"
+                className="inline-flex items-center gap-2 mt-8 py-2 font-mono-label text-xs tracking-widest text-[#C41E3A] hover:text-[#9B1B30] transition-colors group"
               >
                 VIEW ALL RESULTS
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

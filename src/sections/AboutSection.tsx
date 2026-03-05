@@ -97,7 +97,7 @@ export default function AboutSection() {
               {/* CTA Link */}
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 mt-8 font-mono-label text-xs tracking-widest text-[#C41E3A] hover:text-[#9B1B30] transition-colors group"
+                className="inline-flex items-center gap-2 mt-8 py-2 font-mono-label text-xs tracking-widest text-[#C41E3A] hover:text-[#9B1B30] transition-colors group"
               >
                 READ FULL BIO
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

@@ -22,10 +22,10 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <div className="font-mono-label text-[10px] text-[#6B6B6B] tracking-widest mb-4">
+            <div className="font-mono-label text-[11px] md:text-[10px] text-[#6B6B6B] tracking-widest mb-4">
               QUICK LINKS
             </div>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {[
                 { label: 'Home', path: '/' },
                 { label: 'About', path: '/about' },
@@ -39,7 +39,7 @@ export default function Footer() {
                 <li key={item.path}>
                   <Link
                     to={item.path}
-                    className="text-sm text-[#4A4A4A] hover:text-[#1A1A1A] transition-colors"
+                    className="text-sm text-[#4A4A4A] hover:text-[#1A1A1A] transition-colors inline-block py-2"
                   >
                     {item.label}
                   </Link>
@@ -50,7 +50,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <div className="font-mono-label text-[10px] text-[#6B6B6B] tracking-widest mb-4">
+            <div className="font-mono-label text-[11px] md:text-[10px] text-[#6B6B6B] tracking-widest mb-4">
               CONNECT
             </div>
             <div className="flex items-center gap-3">
@@ -83,7 +83,7 @@ export default function Footer() {
           <p className="text-xs text-[#6B6B6B]">
             © 2025 Mike On Coaching. All rights reserved.
           </p>
-          <p className="font-mono-label text-[10px] text-[#6B6B6B] tracking-widest">
+          <p className="font-mono-label text-[11px] md:text-[10px] text-[#6B6B6B] tracking-widest">
             FREDERICTON, NEW BRUNSWICK, CANADA
           </p>
         </div>
