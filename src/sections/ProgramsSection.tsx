@@ -1,125 +1,93 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
-import { Users, User, ClipboardList, ArrowRight } from 'lucide-react';
+import ProgramCard from '@/components/ProgramCard';
+import { Trophy, Users, Calendar, GraduationCap } from 'lucide-react';
 
+const PROGRAMS = [
+  {
+    title: 'High-Performance Coaching',
+    description:
+      '1-on-1 endurance coaching for competitive triathletes and runners pursuing podium finishes.',
+    features: [
+      'Personalized training plans',
+      'Weekly check-ins',
+      'Race strategy',
+      'Data analysis',
+    ],
+    linkTo: '/coaching',
+    icon: Trophy,
+  },
+  {
+    title: 'Youth Pathway',
+    description:
+      'LTAD-aligned development for young athletes pursuing provincial and national goals.',
+    features: [
+      'Age-appropriate progressions',
+      'Multi-sport foundation',
+      'Competition prep',
+    ],
+    linkTo: '/youth-pathway',
+    icon: Users,
+  },
+  {
+    title: 'Training Camps',
+    description:
+      'Intensive training blocks for focused performance gains in triathlon and running.',
+    features: [
+      'Multi-day immersion',
+      'Group dynamics',
+      'Structured schedule',
+    ],
+    linkTo: '/camps',
+    icon: Calendar,
+  },
+  {
+    title: 'Coach Mentorship',
+    description:
+      'Applied sport science and leadership development for coaching professionals.',
+    features: [
+      'Evidence-based methods',
+      'Leadership skills',
+      'Professional growth',
+    ],
+    linkTo: '/coach-mentorship',
+    icon: GraduationCap,
+  },
+];
 
 export default function ProgramsSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current?.children || [],
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none reverse',
-          }
-        }
-      );
+      gsap.from('.program-card', {
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
+        y: 40,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+      });
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
-  const programs = [
-    {
-      icon: User,
-      title: '1-ON-1 COACHING',
-      description: 'Personalized training plans tailored to your goals, schedule, and fitness level. Weekly check-ins and unlimited messaging support.',
-      features: ['Custom training plans', 'Weekly video calls', 'Race strategy', 'Nutrition guidance'],
-    },
-    {
-      icon: Users,
-      title: 'GROUP PROGRAMS',
-      description: 'Train alongside like-minded athletes. Weekly group sessions, shared motivation, and a supportive community.',
-      features: ['Group workouts', 'Team challenges', 'Race meetups', 'Accountability partners'],
-    },
-    {
-      icon: ClipboardList,
-      title: 'CONSULTS & PLANS',
-      description: 'One-time consultations or standalone training plans for self-directed athletes.',
-      features: ['Training plan design', 'Form analysis', 'Race preparation', 'Season planning'],
-    },
-  ];
-
   return (
-    <section
-      ref={sectionRef}
-      id="programs"
-      className="section-spacing bg-[#FAFAFA]"
-    >
-      <div className="px-6 lg:px-16 max-w-7xl mx-auto">
-        <div ref={contentRef}>
-          {/* Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <span className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4 block">
-                WHAT I OFFER
-              </span>
-              <h2 className="font-display text-section text-[#1A1A1A] mb-4">
-                PERSONALIZED<br />
-                <span className="text-[#C41E3A]">COACHING</span>
-              </h2>
-              <div className="accent-rule w-20 mb-6" />
-              <p className="text-lg text-[#4A4A4A] leading-relaxed">
-                Whether you're training for your first 5K or your next IRONMAN, 
-                I have a program that fits your lifestyle and goals.
-              </p>
-            </div>
-            
-            {/* Image */}
-            <div className="image-card aspect-video">
-              <img
-                src="/images/MikeWithTrainingGroup.jpg"
-                alt="Coach Mike with training group"
-                className="w-full h-full object-cover object-center"
+    <section id="programs" ref={sectionRef} className="section-spacing">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-section">Programs</h2>
+        <div className="accent-rule mb-12" />
+        <div className="grid md:grid-cols-2 gap-8">
+          {PROGRAMS.map((program) => (
+            <div key={program.title} className="program-card">
+              <ProgramCard
+                title={program.title}
+                description={program.description}
+                features={program.features}
+                linkTo={program.linkTo}
+                icon={<program.icon className="w-8 h-8" />}
               />
             </div>
-          </div>
-
-          {/* Program Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {programs.map((program) => (
-              <div 
-                key={program.title}
-                className="card-light hover:shadow-lg transition-shadow"
-              >
-                <div className="w-14 h-14 rounded-xl bg-[#C41E3A]/10 flex items-center justify-center mb-6">
-                  <program.icon className="w-7 h-7 text-[#C41E3A]" />
-                </div>
-                
-                <h3 className="font-mono-label text-sm text-[#1A1A1A] tracking-widest mb-3">
-                  {program.title}
-                </h3>
-                
-                <p className="text-[#4A4A4A] leading-relaxed mb-6">
-                  {program.description}
-                </p>
-                
-                <ul className="space-y-2 mb-6">
-                  {program.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-[#4A4A4A]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C41E3A]" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <button className="flex items-center gap-2 text-[#C41E3A] text-sm font-medium hover:gap-3 transition-all">
-                  Learn more <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </section>

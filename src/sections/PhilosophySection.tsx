@@ -1,118 +1,76 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
-import { Brain, Heart, Zap, TrendingUp } from 'lucide-react';
+import { TrendingUp, Heart, Compass } from 'lucide-react';
 
+const PILLARS = [
+  {
+    icon: TrendingUp,
+    title: 'Competence',
+    description:
+      "Structured progression that builds confidence through measurable growth. Every training block has a purpose.",
+  },
+  {
+    icon: Heart,
+    title: 'Connection',
+    description:
+      "Community and coach relationship that sustains motivation. You're not training alone.",
+  },
+  {
+    icon: Compass,
+    title: 'Choice',
+    description:
+      'Athlete autonomy in your development journey. We guide — you decide.',
+  },
+];
 
 export default function PhilosophySection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current?.children || [],
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none reverse',
-          }
-        }
-      );
+      gsap.from('.philosophy-card', {
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
+        y: 40,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.7,
+      });
+      gsap.from('.philosophy-quote', {
+        scrollTrigger: { trigger: '.philosophy-quote', start: 'top 80%' },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+      });
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
-  const pillars = [
-    {
-      icon: Brain,
-      title: 'MINDFULNESS',
-      description: 'Mental training to stay present, focused, and resilient under pressure.',
-    },
-    {
-      icon: Zap,
-      title: 'ERGONOMICS',
-      description: 'Science-backed nutrition and supplementation strategies.',
-    },
-    {
-      icon: Heart,
-      title: 'RECOVERY',
-      description: 'Sleep optimization, active recovery, and injury prevention.',
-    },
-    {
-      icon: TrendingUp,
-      title: 'PERFORMANCE',
-      description: 'Evidence-based training protocols for peak results.',
-    },
-  ];
-
   return (
-    <section
-      ref={sectionRef}
-      id="philosophy"
-      className="section-spacing bg-[#F8F8F8]"
-    >
-      <div className="px-6 lg:px-16 max-w-7xl mx-auto">
-        <div ref={contentRef}>
-          {/* Header */}
-          <div className="text-center mb-16">
-            <span className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4 block">
-              COACHING PHILOSOPHY
-            </span>
-            <h2 className="font-display text-section text-[#1A1A1A] mb-4">
-              TRAIN SMART
-            </h2>
-            <div className="accent-rule w-20 mx-auto mb-6" />
-            <p className="text-lg text-[#4A4A4A] max-w-2xl mx-auto leading-relaxed">
-              I take a holistic approach to coaching—incorporating mindfulness and ergogenics 
-              along with a strong focus on recovery, with best practices in high-performance 
-              training, to elicit peak performance from my athletes.
-            </p>
-          </div>
+    <section id="philosophy" ref={sectionRef} className="section-spacing">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-section font-display text-center text-[#1A1A1A]">Our Philosophy</h2>
+        <div className="accent-rule w-20 mx-auto mb-12" />
 
-          {/* Four Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {pillars.map((pillar) => (
-              <div 
-                key={pillar.title}
-                className="card-light hover:shadow-lg transition-shadow"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#C41E3A]/10 flex items-center justify-center mb-4">
-                  <pillar.icon className="w-6 h-6 text-[#C41E3A]" />
-                </div>
-                <h3 className="font-mono-label text-xs text-[#1A1A1A] tracking-widest mb-2">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm text-[#4A4A4A] leading-relaxed">
-                  {pillar.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Quote */}
-          <div className="relative max-w-3xl mx-auto">
-            <div className="card-light p-8 lg:p-12 text-center relative">
-              <div className="quote-mark absolute top-0 left-6">"</div>
-              <blockquote className="relative z-10">
-                <p className="font-display text-3xl lg:text-5xl text-[#1A1A1A] mb-4">
-                  DON'T STRAIN<br />
-                  <span className="text-[#C41E3A]">BUT TRAIN</span>
-                </p>
-                <footer className="font-mono-label text-xs text-[#6B6B6B] tracking-widest">
-                  — COACH MIKE ON
-                </footer>
-              </blockquote>
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {PILLARS.map((pillar) => (
+            <div key={pillar.title} className="philosophy-card text-center p-6">
+              <pillar.icon className="w-12 h-12 mx-auto mb-4 text-[#C41E3A]" />
+              <h3 className="font-display text-xl mb-3">{pillar.title}</h3>
+              <p className="text-[#4A4A4A]">{pillar.description}</p>
             </div>
-          </div>
+          ))}
         </div>
+
+        <blockquote className="philosophy-quote text-center max-w-3xl mx-auto">
+          <span className="quote-mark text-[#C41E3A]">"</span>
+          <p className="text-xl md:text-2xl text-[#4A4A4A] italic mb-4">
+            Training should build you up, not break you down. Every session is
+            an investment in the athlete you're becoming.
+          </p>
+          <footer className="font-mono-label text-sm text-[#6B6B6B]">
+            — Coach Mike On
+          </footer>
+        </blockquote>
       </div>
     </section>
   );

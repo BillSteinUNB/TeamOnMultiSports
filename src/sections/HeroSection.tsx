@@ -1,36 +1,57 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router';
 import { gsap } from '@/lib/gsap';
 import { ChevronDown } from 'lucide-react';
 
+const AUTHORITY_ITEMS = [
+  'CSEP-CEP',
+  '20+ Years',
+  '7× Kona Qualifier Coach',
+  'NCCP Competition Development',
+];
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const authorityRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: 0.2 }
-      );
-      
-      gsap.fromTo(
-        imageRef.current,
-        { x: 40, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: 0.4 }
-      );
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      tl.fromTo(
+        headlineRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 }
+      )
+        .fromTo(
+          authorityRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          '-=0.4'
+        )
+        .fromTo(
+          ctaRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          '-=0.3'
+        )
+        .fromTo(
+          imageRef.current,
+          { x: 40, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8 },
+          '-=0.5'
+        );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollToPrograms = () => {
+    const el = document.getElementById('programs');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -42,47 +63,54 @@ export default function HeroSection() {
       <div className="w-full px-6 lg:px-16 py-20 lg:py-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Content */}
-          <div ref={contentRef} className="order-2 lg:order-1">
-            <span className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4 block">
-              TRIATHLON & RUN COACHING
-            </span>
-            
-            <h1 className="font-display text-hero text-[#1A1A1A] leading-[0.9] mb-6">
-              COACH<br />
-              <span className="text-[#C41E3A]">MIKE</span> ON
-            </h1>
-            
-            <div className="accent-rule w-20 mb-6" />
-            
-            <p className="text-lg lg:text-xl text-[#4A4A4A] max-w-lg leading-relaxed mb-8">
-              Holistic coaching that incorporates mindfulness, ergogenics, and recovery—
-              combined with best practices in high-performance training.
-            </p>
-            
-            <div className="flex flex-wrap gap-3 mb-8">
-              <span className="feature-tag">MINDFULNESS</span>
-              <span className="feature-tag">DATA-DRIVEN</span>
-              <span className="feature-tag">RECOVERY FOCUSED</span>
+          <div className="order-2 lg:order-1">
+            <div ref={headlineRef}>
+              <span className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4 block">
+                TRIATHLON & RUN COACHING
+              </span>
+
+              <h1 className="font-display text-hero text-[#1A1A1A] leading-[0.9] mb-6">
+                Developing Athletes.
+                <br />
+                <span className="text-[#C41E3A]">Designing Pathways.</span>
+              </h1>
+
+              <div className="accent-rule w-20 mb-6" />
             </div>
-            
-            <div className="flex flex-wrap gap-4">
-              <button 
-                onClick={() => scrollToSection('programs')}
-                className="btn-primary"
-              >
+
+            {/* Authority Strip */}
+            <div
+              ref={authorityRef}
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8"
+            >
+              {AUTHORITY_ITEMS.map((item, i) => (
+                <span key={item} className="flex items-center">
+                  <span className="font-mono-label text-[11px] text-[#4A4A4A]">
+                    {item}
+                  </span>
+                  {i < AUTHORITY_ITEMS.length - 1 && (
+                    <span className="ml-4 w-1 h-1 rounded-full bg-[#C41E3A] inline-block" />
+                  )}
+                </span>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div ref={ctaRef} className="flex flex-wrap gap-4">
+              <Link to="/apply" className="btn-primary">
+                APPLY FOR COACHING
+              </Link>
+              <button onClick={scrollToPrograms} className="btn-outline">
                 EXPLORE PROGRAMS
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="btn-outline"
-              >
-                BOOK A CALL
               </button>
             </div>
           </div>
-          
-          {/* Right Image - Mike's Headshot */}
-          <div ref={imageRef} className="order-1 lg:order-2 flex justify-center lg:justify-end">
+
+          {/* Right Image — Mike's Headshot */}
+          <div
+            ref={imageRef}
+            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+          >
             <div className="image-card w-full max-w-md aspect-[3/4] rounded-[2rem]">
               <img
                 src="/images/MikeProfessionalHeadshot.jpg"
@@ -93,7 +121,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      
+
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <ChevronDown className="w-6 h-6 text-[#9B9B9B]" />
