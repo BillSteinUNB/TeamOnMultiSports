@@ -1,9 +1,7 @@
 import { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '@/lib/gsap';
 import { Trophy, Medal, Target, Star } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function ResultsSection() {
   const sectionRef = useRef<HTMLElement>(null);

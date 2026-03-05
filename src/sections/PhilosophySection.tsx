@@ -1,9 +1,7 @@
 import { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '@/lib/gsap';
 import { Brain, Heart, Zap, TrendingUp } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function PhilosophySection() {
   const sectionRef = useRef<HTMLElement>(null);

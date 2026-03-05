@@ -1,9 +1,7 @@
 import { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '@/lib/gsap';
 import { Users, User, ClipboardList, ArrowRight } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function ProgramsSection() {
   const sectionRef = useRef<HTMLElement>(null);

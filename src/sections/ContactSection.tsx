@@ -1,9 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '@/lib/gsap';
 import { Mail, Phone, Instagram, MapPin, Send, Check } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);

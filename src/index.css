@@ -6,7 +6,29 @@
 
 @layer base {
   :root {
-    /* Light Mode - Athletic Theme with Red */
+    /* shadcn/ui color system */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.6%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.6%;
+    --primary: 12 76% 47%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 3.6%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 39.2%;
+    --accent: 12 76% 47%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 12 76% 47%;
+    --radius: 0.5rem;
+    
+    /* Legacy theme variables - kept for compatibility */
     --bg-primary: #FAFAFA;
     --bg-secondary: #F5F5F5;
     --bg-card: #FFFFFF;
@@ -25,9 +47,6 @@
     @apply border-border;
   }
   
-  html {
-    scroll-behavior: smooth;
-  }
   
   body {
     @apply antialiased;

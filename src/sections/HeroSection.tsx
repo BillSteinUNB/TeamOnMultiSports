@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '@/lib/gsap';
 import { ChevronDown } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
