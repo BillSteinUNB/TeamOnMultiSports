@@ -1,13 +1,7 @@
 import { Instagram, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router';
 
 export default function Footer() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="bg-[#FAFAFA] border-t border-[#E5E5E5] py-12 lg:py-16">
       <div className="px-6 lg:px-16 max-w-7xl mx-auto">
@@ -33,19 +27,22 @@ export default function Footer() {
             </div>
             <ul className="space-y-2">
               {[
-                { label: 'Philosophy', id: 'philosophy' },
-                { label: 'Programs', id: 'programs' },
-                { label: 'Results', id: 'results' },
-                { label: 'About', id: 'about' },
-                { label: 'Contact', id: 'contact' },
+                { label: 'Home', path: '/' },
+                { label: 'About', path: '/about' },
+                { label: 'Coaching', path: '/coaching' },
+                { label: 'Youth Pathway', path: '/youth-pathway' },
+                { label: 'Camps', path: '/camps' },
+                { label: 'Coach Mentorship', path: '/coach-mentorship' },
+                { label: 'Results', path: '/results' },
+                { label: 'Apply', path: '/apply' },
               ].map(item => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => scrollToSection(item.id)}
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
                     className="text-sm text-[#4A4A4A] hover:text-[#1A1A1A] transition-colors"
                   >
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
