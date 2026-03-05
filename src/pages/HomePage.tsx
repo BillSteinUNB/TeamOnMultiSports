@@ -1,8 +1,25 @@
+import HeroSection from '@/sections/HeroSection';
+import CredibilityBar from '@/sections/CredibilityBar';
+import WhoWeServeSection from '@/sections/WhoWeServeSection';
+import DifferentiationSection from '@/sections/DifferentiationSection';
+import AboutSection from '@/sections/AboutSection';
+import ProgramsSection from '@/sections/ProgramsSection';
+import ResultsSection from '@/sections/ResultsSection';
+import PhilosophySection from '@/sections/PhilosophySection';
+import CTASection from '@/sections/CTASection';
+
 export default function HomePage() {
   return (
-    <div className="section-spacing">
-      <h1>Home</h1>
-      <p>Content coming soon...</p>
-    </div>
+    <>
+      <HeroSection />
+      <CredibilityBar />
+      <WhoWeServeSection />
+      <DifferentiationSection />
+      <AboutSection />
+      <ProgramsSection />
+      <ResultsSection />
+      <PhilosophySection />
+      <CTASection />
+    </>
   );
 }

@@ -36,6 +36,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
+      id="hero"
       className="relative min-h-screen flex items-center bg-[#FAFAFA]"
     >
       <div className="w-full px-6 lg:px-16 py-20 lg:py-0">
