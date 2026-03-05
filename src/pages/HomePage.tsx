@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import HeroSection from '@/sections/HeroSection';
 import CredibilityBar from '@/sections/CredibilityBar';
 import WhoWeServeSection from '@/sections/WhoWeServeSection';
@@ -11,6 +12,10 @@ import CTASection from '@/sections/CTASection';
 export default function HomePage() {
   return (
     <>
+      <Helmet>
+        <title>TeamOn Multisports | Endurance Coaching</title>
+        <meta name="description" content="Science-backed triathlon and run coaching for athletes pursuing performance goals." />
+      </Helmet>
       <HeroSection />
       <CredibilityBar />
       <WhoWeServeSection />

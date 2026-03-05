@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
+import { Link } from 'react-router';
 import { gsap } from '@/lib/gsap';
-import { Trophy, Medal, Target, Star } from 'lucide-react';
+import { Trophy, Medal, Target, Star, ArrowRight } from 'lucide-react';
 
 
 export default function ResultsSection() {
@@ -128,6 +129,15 @@ export default function ResultsSection() {
                   </div>
                 ))}
               </div>
+
+              {/* CTA Link */}
+              <Link
+                to="/results"
+                className="inline-flex items-center gap-2 mt-8 font-mono-label text-xs tracking-widest text-[#C41E3A] hover:text-[#9B1B30] transition-colors group"
+              >
+                VIEW ALL RESULTS
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
         </div>

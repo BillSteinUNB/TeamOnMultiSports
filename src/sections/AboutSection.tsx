@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
+import { Link } from 'react-router';
 import { gsap } from '@/lib/gsap';
-import { Award, BookOpen, Users, MapPin } from 'lucide-react';
+import { Award, BookOpen, Users, MapPin, ArrowRight } from 'lucide-react';
 
 
 export default function AboutSection() {
@@ -92,6 +93,15 @@ export default function AboutSection() {
                   </div>
                 ))}
               </div>
+
+              {/* CTA Link */}
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 mt-8 font-mono-label text-xs tracking-widest text-[#C41E3A] hover:text-[#9B1B30] transition-colors group"
+              >
+                READ FULL BIO
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
         </div>
