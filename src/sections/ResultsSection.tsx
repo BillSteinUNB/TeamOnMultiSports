@@ -1,8 +1,27 @@
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router';
 import { gsap } from '@/lib/gsap';
-import { Trophy, Medal, Target, Star, ArrowRight } from 'lucide-react';
+import { ArrowRight, Medal, Quote, Star, Target, Trophy } from 'lucide-react';
 
+const STATS = [
+  { number: 'Metric #1', label: 'ATHLETES COACHED', icon: Trophy },
+  { number: 'Metric #2', label: 'QUALIFIERS OR PODIUMS', icon: Medal },
+  { number: 'Metric #3', label: 'YOUTH OUTCOMES', icon: Target },
+  { number: 'Metric #4', label: 'COACHES MENTORED', icon: Star },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: 'Approved Testimonial #1',
+    author: 'Athlete Name #1',
+    achievement: 'Athlete Result #1',
+  },
+  {
+    quote: 'Approved Testimonial #2',
+    author: 'Coach Name #1',
+    achievement: 'Coach Development Outcome #1',
+  },
+];
 
 export default function ResultsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -11,73 +30,46 @@ export default function ResultsSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        statsRef.current?.children || [],
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.5,
-          stagger: 0.08,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: statsRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          }
-        }
-      );
+      gsap.from(statsRef.current?.children || [], {
+        scrollTrigger: { trigger: statsRef.current, start: 'top 85%' },
+        y: 20,
+        stagger: 0.08,
+        duration: 0.5,
+        ease: 'power2.out',
+      });
 
-      gsap.fromTo(
-        contentRef.current,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          }
-        }
-      );
+      gsap.from(contentRef.current, {
+        scrollTrigger: { trigger: contentRef.current, start: 'top 80%' },
+        y: 30,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const stats = [
-    { number: '7+', label: 'KONA QUALIFIERS', icon: Trophy },
-    { number: '4+', label: 'BOSTON QUALIFIERS', icon: Medal },
-    { number: '2', label: 'SUB-3 MARATHONS', icon: Target },
-    { number: '10+', label: 'YEARS COACHING', icon: Star },
-  ];
-
-  const testimonials = [
-    {
-      quote: "Mike's approach changed everything. The mindfulness training helped me stay focused during my Kona qualifier.",
-      author: 'Sarah K.',
-      achievement: 'Kona Qualifier 2024',
-    },
-    {
-      quote: "The data-driven approach combined with recovery focus took my performance to the next level.",
-      author: 'James M.',
-      achievement: 'Boston Marathon Finisher',
-    },
-  ];
-
   return (
-    <section
-      ref={sectionRef}
-      id="results"
-      className="section-spacing bg-[#F8F8F8]"
-    >
+    <section ref={sectionRef} id="results" className="section-spacing bg-[#F8F8F8]">
       <div className="px-6 lg:px-16 max-w-7xl mx-auto">
-        {/* Stats */}
+        <div className="max-w-3xl mb-12">
+          <p className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4">
+            RESULTS & PROOF
+          </p>
+          <h2 className="font-display text-section text-[#1A1A1A] mb-5">
+            Results matter.
+            <br />
+            People matter more.
+          </h2>
+          <div className="accent-rule w-20 mb-6" />
+          <p className="text-lg text-[#4A4A4A] leading-relaxed">
+            The best results are not just faster times. They are athletes and
+            coaches who understand what they are doing and trust the work.
+          </p>
+        </div>
+
         <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16">
-          {stats.map((stat) => (
+          {STATS.map((stat) => (
             <div key={stat.label} className="card-light p-6 text-center">
               <div className="w-10 h-10 rounded-lg bg-[#C41E3A]/10 flex items-center justify-center mx-auto mb-3">
                 <stat.icon className="w-5 h-5 text-[#C41E3A]" />
@@ -90,52 +82,48 @@ export default function ResultsSection() {
           ))}
         </div>
 
-        {/* Content */}
         <div ref={contentRef}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Image - Better centered */}
             <div className="image-card aspect-[10/9]">
               <img
                 src="/images/MikeWithMarathonRunner.jpg"
-                alt="Coach Mike with marathon finisher"
+                alt="Michael On with a TeamON athlete"
                 className="w-full h-full object-cover object-[center_15%]"
               />
             </div>
-            
-            {/* Text Content */}
+
             <div>
               <span className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4 block">
-                ATHLETE SUCCESS
+                HUMAN STORIES
               </span>
-              <h2 className="font-display text-section text-[#1A1A1A] mb-4">
-                JOIN THE<br />
-                <span className="text-[#C41E3A]">TEAM</span>
-              </h2>
+              <h3 className="font-display text-section text-[#1A1A1A] mb-4">
+                Progress you can
+                <br />
+                <span className="text-[#C41E3A]">feel and measure.</span>
+              </h3>
               <div className="accent-rule w-20 mb-6" />
               <p className="text-lg text-[#4A4A4A] leading-relaxed mb-8">
-                Train with a crew that keeps you consistent—group sessions, 
-                race meetups, and honest support. My athletes don't just train; 
-                they become part of a community.
+                Add Mike's verified athlete results, coach mentorship outcomes,
+                and approved testimonials here after the call.
               </p>
-              
-              {/* Testimonials */}
+
               <div className="space-y-4">
-                {testimonials.map((t, i) => (
-                  <div key={i} className="border-l-2 border-[#C41E3A]/30 pl-4">
-                    <p className="text-[#4A4A4A] italic mb-2">"{t.quote}"</p>
+                {TESTIMONIALS.map((t) => (
+                  <div key={t.author} className="border-l-2 border-[#C41E3A]/30 pl-4">
+                    <Quote className="w-4 h-4 text-[#C41E3A]/50 mb-2" />
+                    <p className="text-[#4A4A4A] italic mb-2">&ldquo;{t.quote}&rdquo;</p>
                     <p className="text-sm text-[#1A1A1A]">
-                      {t.author} <span className="text-[#6B6B6B]">— {t.achievement}</span>
+                      {t.author} <span className="text-[#6B6B6B]">- {t.achievement}</span>
                     </p>
                   </div>
                 ))}
               </div>
 
-              {/* CTA Link */}
               <Link
                 to="/results"
                 className="inline-flex items-center gap-2 mt-8 py-2 font-mono-label text-xs tracking-widest text-[#C41E3A] hover:text-[#9B1B30] transition-colors group"
               >
-                VIEW ALL RESULTS
+                VIEW RESULTS PAGE
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

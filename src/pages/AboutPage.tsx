@@ -58,12 +58,11 @@ const SDT_PILLARS = [
   },
 ];
 
-// DRAFT: Outcomes data below is placeholder — confirm numbers with Coach Mike
 const OUTCOMES = [
-  { stat: '100+', label: 'Athletes coached across all levels' },
-  { stat: '10+', label: 'Years of competitive coaching experience' },
-  { stat: '7×', label: 'Kona qualifier coaching success' },
-  { stat: 'NB', label: 'Provincial high-performance program director' },
+  { stat: 'Credential #1', label: 'Confirmed coaching credential' },
+  { stat: 'Credential #2', label: 'Confirmed leadership role' },
+  { stat: 'Outcome #1', label: 'Confirmed athlete development outcome' },
+  { stat: 'Outcome #2', label: 'Confirmed program result' },
 ];
 
 export default function AboutPage() {
@@ -205,25 +204,21 @@ export default function AboutPage() {
                 <span className="text-[#C41E3A]">TO COACH</span>
               </h2>
               <div className="accent-rule w-20 mb-6" />
-
-              {/* DRAFT: Confirm personal backstory details with Coach Mike */}
               <p className="text-lg text-[#4A4A4A] leading-relaxed mb-6">
-                Mike's path to coaching began on the roads and trails of New Brunswick—
-                first as a competitive runner, then as a triathlete drawn to the multi-discipline
-                challenge. A Bachelor of Kinesiology from the University of New Brunswick gave him
-                the scientific foundation; years of racing gave him the experiential understanding
-                that no textbook can replace.
+                Michael On leads TeamON Multisports as a coach, educator, and athlete
+                development leader. Personal Journey Detail #1 can be added here after
+                the exact story is confirmed with him.
               </p>
 
               <p className="text-[#4A4A4A] leading-relaxed mb-6">
-                Today, Mike coaches athletes from first-time sprint triathletes to national-level
-                competitors. Based in Fredericton, he works with athletes locally and around the
-                world—combining evidence-based programming with honest, human coaching.
+                Based in Fredericton, he supports athletes and coaches through structured
+                programming, development pathways, and practical mentorship. Coaching Scope
+                Detail #1 can be added once his current services are confirmed.
               </p>
 
               <p className="text-[#4A4A4A] leading-relaxed">
                 His holistic approach merges exercise physiology, Self-Determination Theory, and
-                a genuine belief that training should build people up—not break them down.
+                a genuine belief that training should build people up, not break them down.
               </p>
             </div>
           </div>
@@ -325,7 +320,6 @@ export default function AboutPage() {
             <div className="accent-rule w-20 mx-auto" />
           </div>
 
-          {/* DRAFT: Confirm all stats with Coach Mike before publishing */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {OUTCOMES.map((item) => (
               <div key={item.label} className="about-outcome-item text-center">

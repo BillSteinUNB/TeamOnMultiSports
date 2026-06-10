@@ -18,7 +18,6 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
-/* DRAFT: Camp types and descriptions to be confirmed */
 const CAMP_TYPES = [
   {
     title: 'Pre-Season Base Building',
@@ -243,7 +242,6 @@ export default function CampsPage() {
                   notified when new camp dates are released and secure your spot
                   early.
                 </p>
-                {/* DRAFT: Specific camp dates to be added when confirmed */}
                 <a
                   href="/apply"
                   className="inline-flex items-center gap-2 py-2 font-mono-label text-xs text-[#C41E3A] hover:text-[#9B1B30] transition-colors"

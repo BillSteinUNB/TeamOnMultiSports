@@ -18,7 +18,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: 'HOME', to: '/' },
   { label: 'ABOUT', to: '/about', sectionId: 'about' },
-  { label: 'COACHING', to: '/coaching' },
+  { label: 'ATHLETE COACHING', to: '/coaching' },
   { label: 'YOUTH PATHWAY', to: '/youth-pathway' },
   { label: 'CAMPS', to: '/camps' },
   { label: 'COACH MENTORSHIP', to: '/coach-mentorship' },
@@ -84,9 +84,14 @@ export default function Navigation() {
         {/* Logo */}
         <Link
           to="/"
-          className="font-mono-label text-sm text-[#1A1A1A] tracking-widest hover:text-[#C41E3A] transition-colors py-3"
+          className="leading-none hover:text-[#C41E3A] transition-colors py-2"
         >
-          MIKE ON
+          <span className="font-mono-label block text-sm text-[#1A1A1A] tracking-widest">
+            TEAMON
+          </span>
+          <span className="font-mono-label block text-[8px] text-[#6B6B6B] tracking-[0.18em]">
+            MULTISPORTS
+          </span>
         </Link>
 
         {/* Desktop Nav Links */}
@@ -130,7 +135,7 @@ export default function Navigation() {
         <SheetContent side="right" className="w-[300px] pt-12">
           <SheetHeader>
             <SheetTitle className="font-mono-label text-sm tracking-widest text-[#1A1A1A]">
-              MIKE ON
+              TEAMON MULTISPORTS
             </SheetTitle>
           </SheetHeader>
 

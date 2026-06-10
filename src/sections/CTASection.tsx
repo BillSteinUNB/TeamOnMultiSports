@@ -4,7 +4,8 @@ export default function CTASection() {
   return (
     <div id="cta">
       <CTABanner
-        subheading="Join a coaching community built on science, mindfulness, and results. Limited spots available."
+        heading="Ready to build better?"
+        subheading="Apply for coaching, youth development, or coach mentorship with TeamON Multisports."
       />
     </div>
   );

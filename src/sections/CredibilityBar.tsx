@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 
 const CREDENTIALS = [
-  { value: '7×', label: 'Kona Qualifier Coach' },
+  { value: '7x', label: 'Kona Qualifier Coach' },
   { value: 'Sub-3:00', label: 'Marathon Athletes' },
   { value: '20+', label: 'Years Experience' },
   { value: 'CSEP-CEP', label: 'Certified' },
