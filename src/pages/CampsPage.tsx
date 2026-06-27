@@ -154,7 +154,7 @@ export default function CampsPage() {
   return (
     <main>
       <Helmet>
-        <title>Training Camps | TeamOn Multisports</title>
+        <title>Training Camps | TeamON Multisports</title>
         <meta name="description" content="Intensive training blocks for focused performance gains in triathlon and running." />
       </Helmet>
       <PageHero

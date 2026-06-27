@@ -171,7 +171,7 @@ export default function AboutPage() {
   return (
     <>
       <Helmet>
-        <title>About Coach Mike On | TeamOn Multisports</title>
+        <title>About Coach Mike On | TeamON Multisports</title>
         <meta name="description" content="Meet Coach Mike On — CSEP-CEP, NCCP certified endurance coach with 20+ years of experience developing athletes." />
       </Helmet>
       {/* ───── Hero ───── */}

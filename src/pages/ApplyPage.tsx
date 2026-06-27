@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useRef, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
 import PageHero from '@/components/PageHero';
 import { gsap } from '@/lib/gsap';
@@ -25,9 +25,9 @@ const applicationSchema = z.object({
   location: z.string().optional(),
   ageRange: z.string().optional(),
 
-  primarySport: z.string().min(1, 'Primary sport is required.'),
+  primarySport: z.string().min(1, 'Primary focus is required.'),
   experienceLevel: z.string().min(1, 'Experience level is required.'),
-  trainingVolume: z.string().min(1, 'Current training volume is required.'),
+  trainingVolume: z.string().min(1, 'Current training or coaching volume is required.'),
   coachingExperience: z.string().min(1, 'Previous coaching experience is required.'),
   keyRaces: z.string().optional(),
 
@@ -43,7 +43,7 @@ const applicationSchema = z.object({
 
 type ApplicationFormValues = z.infer<typeof applicationSchema>;
 
-const steps = ['Personal Information', 'Athletic Background', 'Goals & Preferences', 'Review & Submit'];
+const steps = ['Contact Information', 'Background', 'Goals & Fit', 'Review & Send'];
 
 const stepFields: Array<Array<keyof ApplicationFormValues>> = [
   ['fullName', 'email'],
@@ -135,11 +135,35 @@ export default function ApplyPage() {
   };
 
   const onSubmit = (values: ApplicationFormValues) => {
-    console.log('Application submitted:', values);
+    const subject = `TeamON inquiry - ${values.programInterest}`;
+    const body = [
+      'New TeamON Multisports inquiry',
+      '',
+      `Name: ${values.fullName}`,
+      `Email: ${values.email}`,
+      `Phone: ${values.phone || 'Not provided'}`,
+      `Location: ${values.location || 'Not provided'}`,
+      `Age range: ${values.ageRange || 'Not provided'}`,
+      '',
+      `Program interest: ${values.programInterest}`,
+      `Primary focus: ${values.primarySport}`,
+      `Experience level: ${values.experienceLevel}`,
+      `Training / coaching volume: ${values.trainingVolume}`,
+      `Previous coach / mentorship experience: ${values.coachingExperience}`,
+      `Key races / coaching context: ${values.keyRaces || 'Not provided'}`,
+      '',
+      `Primary goal: ${values.primaryGoal}`,
+      `Biggest challenge: ${values.biggestChallenge || 'Not provided'}`,
+      `How they heard about TeamON: ${values.hearAbout}`,
+    ].join('\n');
+
+    window.location.assign(
+      `mailto:coachmikeon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    );
     setIsSubmitted(true);
   };
 
-  const values = form.watch();
+  const values = useWatch({ control: form.control });
 
   const sectionValue = (value?: string) => {
     if (!value || value.trim().length === 0) {
@@ -152,12 +176,12 @@ export default function ApplyPage() {
   return (
     <main>
       <Helmet>
-        <title>Apply for Coaching | TeamOn Multisports</title>
-        <meta name="description" content="Start your application for endurance coaching with TeamOn Multisports." />
+        <title>Apply | TeamON Multisports</title>
+        <meta name="description" content="Start an inquiry for athlete coaching, youth development, camps, or coach mentorship with TeamON Multisports." />
       </Helmet>
       <PageHero
-        title="Apply for Coaching"
-        subtitle="Tell us about your background and goals so we can determine the best fit for your training journey."
+        title="Apply"
+        subtitle="Tell Mike what you are looking for, and this form will prepare an email with the right details."
         breadcrumb="Programs / Apply"
       />
 
@@ -166,10 +190,10 @@ export default function ApplyPage() {
           <div className="card-light" data-apply-animate="intro">
             {isSubmitted ? (
               <div className="py-10 text-center">
-                <p className="font-mono-label text-xs text-[#C41E3A] mb-3">Application Received</p>
+                <p className="font-mono-label text-xs text-[#C41E3A] mb-3">Email Prepared</p>
                 <h2 className="font-display text-4xl md:text-5xl text-[#1A1A1A] mb-4">Thank You</h2>
                 <p className="text-[#4A4A4A] max-w-xl mx-auto">
-                  Thank you! We&apos;ll be in touch within 48 hours.
+                  Your email app should open with your inquiry filled in. Send the email to complete the request.
                 </p>
               </div>
             ) : (
@@ -216,9 +240,9 @@ export default function ApplyPage() {
                       {currentStep === 0 && (
                         <>
                           <div>
-                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Personal Information</h3>
+                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Contact Information</h3>
                             <p className="text-sm text-[#6B6B6B]">
-                              We&apos;ll use this information to contact you and tailor your onboarding.
+                              This is how Mike can follow up about the right TeamON fit.
                             </p>
                           </div>
 
@@ -311,9 +335,9 @@ export default function ApplyPage() {
                       {currentStep === 1 && (
                         <>
                           <div>
-                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Athletic Background</h3>
+                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Background</h3>
                             <p className="text-sm text-[#6B6B6B]">
-                              Help us understand your training history and competitive context.
+                              Share enough context to understand whether this is for athlete coaching, youth development, camps, or coach mentorship.
                             </p>
                           </div>
 
@@ -323,16 +347,18 @@ export default function ApplyPage() {
                               name="primarySport"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel>Primary Sport</FormLabel>
+                                  <FormLabel>Primary Focus</FormLabel>
                                   <FormControl>
                                     <Select value={field.value} onValueChange={field.onChange}>
                                       <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select primary sport" />
+                                        <SelectValue placeholder="Select primary focus" />
                                       </SelectTrigger>
                                       <SelectContent>
                                         <SelectItem value="Triathlon">Triathlon</SelectItem>
                                         <SelectItem value="Running">Running</SelectItem>
                                         <SelectItem value="Both">Both</SelectItem>
+                                        <SelectItem value="Coaching / Mentorship">Coaching / Mentorship</SelectItem>
+                                        <SelectItem value="Youth Athlete Parent">Youth Athlete Parent</SelectItem>
                                         <SelectItem value="Other">Other</SelectItem>
                                       </SelectContent>
                                     </Select>
@@ -358,6 +384,8 @@ export default function ApplyPage() {
                                         <SelectItem value="Intermediate">Intermediate</SelectItem>
                                         <SelectItem value="Competitive">Competitive</SelectItem>
                                         <SelectItem value="Elite">Elite</SelectItem>
+                                        <SelectItem value="Coach / Mentor">Coach / Mentor</SelectItem>
+                                        <SelectItem value="Parent / Guardian">Parent / Guardian</SelectItem>
                                       </SelectContent>
                                     </Select>
                                   </FormControl>
@@ -371,11 +399,11 @@ export default function ApplyPage() {
                               name="trainingVolume"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel>Current Training Volume</FormLabel>
+                                  <FormLabel>Current Training / Coaching Volume</FormLabel>
                                   <FormControl>
                                     <Select value={field.value} onValueChange={field.onChange}>
                                       <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select training volume" />
+                                        <SelectValue placeholder="Select volume" />
                                       </SelectTrigger>
                                       <SelectContent>
                                         <SelectItem value="0-5 hrs/week">0-5 hrs/week</SelectItem>
@@ -383,6 +411,9 @@ export default function ApplyPage() {
                                         <SelectItem value="10-15 hrs/week">10-15 hrs/week</SelectItem>
                                         <SelectItem value="15-20 hrs/week">15-20 hrs/week</SelectItem>
                                         <SelectItem value="20+ hrs/week">20+ hrs/week</SelectItem>
+                                        <SelectItem value="Coaching 1-5 athletes">Coaching 1-5 athletes</SelectItem>
+                                        <SelectItem value="Coaching 6+ athletes">Coaching 6+ athletes</SelectItem>
+                                        <SelectItem value="Not Applicable">Not Applicable</SelectItem>
                                       </SelectContent>
                                     </Select>
                                   </FormControl>
@@ -396,7 +427,7 @@ export default function ApplyPage() {
                               name="coachingExperience"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel>Previous Coaching Experience</FormLabel>
+                                  <FormLabel>Previous Coach / Mentorship Experience</FormLabel>
                                   <FormControl>
                                     <Select value={field.value} onValueChange={field.onChange}>
                                       <SelectTrigger className="w-full">
@@ -405,8 +436,8 @@ export default function ApplyPage() {
                                       <SelectContent>
                                         <SelectItem value="None">None</SelectItem>
                                         <SelectItem value="Self-Coached">Self-Coached</SelectItem>
-                                        <SelectItem value="Had a Coach">Had a Coach</SelectItem>
-                                        <SelectItem value="Currently Coached">Currently Coached</SelectItem>
+                                        <SelectItem value="Had a Coach or Mentor">Had a Coach or Mentor</SelectItem>
+                                        <SelectItem value="Currently Coached or Mentored">Currently Coached or Mentored</SelectItem>
                                       </SelectContent>
                                     </Select>
                                   </FormControl>
@@ -420,7 +451,7 @@ export default function ApplyPage() {
                               name="keyRaces"
                               render={({ field }) => (
                                 <FormItem className="md:col-span-2">
-                                  <FormLabel>Key Races / Events Completed</FormLabel>
+                                  <FormLabel>Key Races / Coaching Context</FormLabel>
                                   <FormControl>
                                     <Textarea
                                       rows={4}
@@ -439,7 +470,7 @@ export default function ApplyPage() {
                       {currentStep === 2 && (
                         <>
                           <div>
-                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Goals & Preferences</h3>
+                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Goals & Fit</h3>
                             <p className="text-sm text-[#6B6B6B]">
                               Share where you want to go and how you prefer to get there.
                             </p>
@@ -458,10 +489,10 @@ export default function ApplyPage() {
                                         <SelectValue placeholder="Select a program" />
                                       </SelectTrigger>
                                       <SelectContent>
-                                        <SelectItem value="High-Performance Coaching">
-                                          High-Performance Coaching
+                                        <SelectItem value="Athlete Coaching">
+                                          Athlete Coaching
                                         </SelectItem>
-                                        <SelectItem value="Youth Pathway">Youth Pathway</SelectItem>
+                                        <SelectItem value="Youth Development">Youth Development</SelectItem>
                                         <SelectItem value="Training Camps">Training Camps</SelectItem>
                                         <SelectItem value="Coach Mentorship">Coach Mentorship</SelectItem>
                                       </SelectContent>
@@ -481,7 +512,7 @@ export default function ApplyPage() {
                                   <FormControl>
                                     <Textarea
                                       rows={4}
-                                      placeholder="What are you trying to achieve in the next 6-12 months?"
+                                      placeholder="What are you hoping to build or improve?"
                                       {...field}
                                     />
                                   </FormControl>
@@ -535,16 +566,16 @@ export default function ApplyPage() {
                       {currentStep === 3 && (
                         <>
                           <div>
-                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Review & Submit</h3>
+                            <h3 className="font-display text-3xl text-[#1A1A1A] mb-1">Review & Send</h3>
                             <p className="text-sm text-[#6B6B6B]">
-                              Review your details before sending your application.
+                              Review your details before creating the email.
                             </p>
                           </div>
 
                           <div className="grid gap-4">
                             <div className="rounded-xl border border-[#E5E5E5] p-5 bg-[#FCFCFC]">
                               <div className="flex items-center justify-between gap-3 mb-4">
-                                <h4 className="font-medium text-[#1A1A1A]">Personal Information</h4>
+                                <h4 className="font-medium text-[#1A1A1A]">Contact Information</h4>
                                 <Button type="button" variant="outline" size="sm" onClick={() => goToStep(0)}>
                                   Edit
                                 </Button>
@@ -562,18 +593,18 @@ export default function ApplyPage() {
 
                             <div className="rounded-xl border border-[#E5E5E5] p-5 bg-[#FCFCFC]">
                               <div className="flex items-center justify-between gap-3 mb-4">
-                                <h4 className="font-medium text-[#1A1A1A]">Athletic Background</h4>
+                                <h4 className="font-medium text-[#1A1A1A]">Background</h4>
                                 <Button type="button" variant="outline" size="sm" onClick={() => goToStep(1)}>
                                   Edit
                                 </Button>
                               </div>
                               <div className="grid sm:grid-cols-2 gap-3 text-sm">
-                                <p><span className="text-[#6B6B6B]">Primary Sport:</span> {sectionValue(values.primarySport)}</p>
+                                <p><span className="text-[#6B6B6B]">Primary Focus:</span> {sectionValue(values.primarySport)}</p>
                                 <p>
                                   <span className="text-[#6B6B6B]">Experience Level:</span> {sectionValue(values.experienceLevel)}
                                 </p>
                                 <p>
-                                  <span className="text-[#6B6B6B]">Training Volume:</span> {sectionValue(values.trainingVolume)}
+                                  <span className="text-[#6B6B6B]">Training / Coaching Volume:</span> {sectionValue(values.trainingVolume)}
                                 </p>
                                 <p>
                                   <span className="text-[#6B6B6B]">Coaching Experience:</span> {sectionValue(values.coachingExperience)}
@@ -586,7 +617,7 @@ export default function ApplyPage() {
 
                             <div className="rounded-xl border border-[#E5E5E5] p-5 bg-[#FCFCFC]">
                               <div className="flex items-center justify-between gap-3 mb-4">
-                                <h4 className="font-medium text-[#1A1A1A]">Goals & Preferences</h4>
+                                <h4 className="font-medium text-[#1A1A1A]">Goals & Fit</h4>
                                 <Button type="button" variant="outline" size="sm" onClick={() => goToStep(2)}>
                                   Edit
                                 </Button>
@@ -622,7 +653,7 @@ export default function ApplyPage() {
                                   </FormControl>
                                   <div>
                                     <FormLabel className="cursor-pointer">
-                                      I understand this is an application
+                                      I understand this will prepare an email inquiry
                                     </FormLabel>
                                   </div>
                                 </div>
@@ -644,7 +675,7 @@ export default function ApplyPage() {
                           Next
                         </Button>
                       ) : (
-                        <Button type="submit">Submit Application</Button>
+                        <Button type="submit">Prepare Email</Button>
                       )}
                     </div>
                   </form>

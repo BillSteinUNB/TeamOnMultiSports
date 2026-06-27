@@ -14,16 +14,16 @@ export default function PageHero({
   className 
 }: PageHeroProps) {
   return (
-    <section className={cn('bg-[#F8F8F8] py-16 md:py-24', className)}>
+    <section className={cn('bg-[#F8F8F8] pt-28 pb-14 md:pt-32 md:pb-20', className)}>
       <div className="max-w-7xl mx-auto px-6">
         {breadcrumb && (
-          <p className="font-mono-label text-sm text-gray-500 mb-4">{breadcrumb}</p>
+          <p className="font-mono-label text-[11px] text-[#C41E3A] mb-4">{breadcrumb}</p>
         )}
-        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#1A1A1A] mb-4">
+        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-[#1A1A1A] mb-4 max-w-4xl">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl">{subtitle}</p>
+          <p className="text-lg md:text-xl text-[#4A4A4A] leading-relaxed max-w-2xl">{subtitle}</p>
         )}
         <div className="accent-rule mt-6 w-20" />
       </div>

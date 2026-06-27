@@ -5,7 +5,7 @@ export default function NotFoundPage() {
   return (
     <>
       <Helmet>
-        <title>Page Not Found | TeamOn Multisports</title>
+        <title>Page Not Found | TeamON Multisports</title>
         <meta name="description" content="The page you're looking for doesn't exist. Return home and explore our coaching services." />
       </Helmet>
       <main className="min-h-[60vh] flex items-center justify-center section-spacing">

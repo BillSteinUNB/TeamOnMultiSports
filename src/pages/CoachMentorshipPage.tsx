@@ -4,63 +4,71 @@ import { gsap } from '@/lib/gsap';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import {
-  GraduationCap,
-  BookOpen,
-  Users,
-  FlaskConical,
-  BarChart3,
-  CalendarClock,
-  Handshake,
-  Route,
   Award,
-  UserCheck,
+  BarChart3,
+  BookOpen,
+  CalendarClock,
+  CheckCircle2,
+  FlaskConical,
+  GraduationCap,
+  Handshake,
   Microscope,
+  Route,
   ShieldCheck,
+  UserCheck,
+  Users,
 } from 'lucide-react';
+
+const CREDENTIALS = [
+  'Coach Credential #1',
+  'Coach Credential #2',
+  'Coach Credential #3',
+  'Coach Credential #4',
+];
 
 const SCIENCE_PILLARS = [
   {
     icon: FlaskConical,
     title: 'Research to Practice',
     description:
-      'Translating research into actionable coaching decisions, training progressions, and athlete conversations.',
+      'Turn sport science into coaching choices athletes can understand and apply.',
   },
   {
     icon: CalendarClock,
-    title: 'Periodization Principles',
+    title: 'Planning and Periodization',
     description:
-      'Designing training phases that build on each other with progressive overload, recovery, and purpose.',
+      'Build training phases with clear purpose, recovery, and progression.',
   },
   {
     icon: BarChart3,
-    title: 'Data Interpretation',
+    title: 'Data with Context',
     description:
-      'Reading heart rate, pace, power, RPE, readiness, and performance trends with context.',
+      'Interpret pace, power, heart rate, RPE, readiness, and life stress without getting lost in numbers.',
   },
   {
     icon: Microscope,
-    title: 'Evidence-Based Decisions',
+    title: 'Better Coaching Decisions',
     description:
-      'Building a coaching rationale that can be explained, adjusted, and defended.',
+      'Learn how to explain, adjust, and defend the choices behind a program.',
   },
 ];
 
-const LEADERSHIP_AREAS = [
+const MENTORSHIP_TOPICS = [
   {
     icon: Handshake,
     title: 'Athlete-Coach Relationships',
     description:
-      'Mentorship Topic #1. Add confirmed relationship, communication, and trust-building topics here.',
+      'Mentorship Topic #1. Add confirmed relationship, trust, and communication topics here.',
   },
   {
     icon: Users,
-    title: 'Managing Training Groups',
+    title: 'Groups and Team Environments',
     description:
-      'Mentorship Topic #2. Add confirmed group coaching, individualization, and team culture topics here.',
+      'Mentorship Topic #2. Add confirmed group coaching, individualization, and culture topics here.',
   },
   {
     icon: Route,
-    title: 'Professional Development',
+    title: 'Professional Growth',
     description:
       'Coach Development Outcome #1. Add the confirmed professional growth outcomes here.',
   },
@@ -71,41 +79,64 @@ const AUDIENCE_TYPES = [
     icon: GraduationCap,
     title: 'New Coaches',
     description:
-      'Coaches seeking structure, feedback, and a mentor while building early coaching confidence.',
+      'Coaches looking for structure, feedback, and a steadier start in the profession.',
   },
   {
     icon: BookOpen,
     title: 'Experienced Coaches',
     description:
-      'Coaches who want to sharpen program design and bring more sport science into daily practice.',
+      'Coaches who want to sharpen planning, communication, and evidence-informed practice.',
   },
   {
     icon: Award,
     title: 'Certification Pathway Coaches',
     description:
-      'Coach Credential #1. Add the confirmed certification context and support scope here.',
+      'Coach Credential #1. Add the confirmed certification pathway context here.',
   },
   {
     icon: UserCheck,
     title: 'Kinesiology Graduates',
     description:
-      'Graduates bridging academic theory with the realities of coaching athletes day to day.',
+      'Graduates who want help moving from theory into real coaching decisions.',
+  },
+];
+
+const PROCESS = [
+  {
+    label: '1',
+    title: 'Clarify the Coach',
+    description:
+      'Start with current role, athletes served, strengths, gaps, and goals.',
+  },
+  {
+    label: '2',
+    title: 'Review Real Work',
+    description:
+      'Use training plans, athlete cases, communication examples, and program questions as the material.',
+  },
+  {
+    label: '3',
+    title: 'Build Better Systems',
+    description:
+      'Leave with clearer planning habits, decision frameworks, and next steps.',
   },
 ];
 
 const STRUCTURE_ITEMS = [
   {
-    label: 'Format',
-    value: 'Mentorship Format Detail #1. Confirm whether this is virtual, in-person, one-on-one, group-based, or a combination.',
-  },
-  {
-    label: 'Duration & Frequency',
-    value: 'Mentorship Format Detail #2. Confirm session length, cadence, and typical engagement length.',
-  },
-  {
-    label: 'Topics Covered',
+    label: 'Session Format',
     value:
-      'Mentorship Topic #3. Confirm the core topics, including program review, athlete case studies, sport science application, and professional development planning.',
+      'Session Format #1. Confirm whether mentorship is virtual, in-person, one-on-one, group-based, or a combination.',
+  },
+  {
+    label: 'Frequency',
+    value:
+      'Session Format #2. Confirm session length, meeting cadence, and typical engagement length.',
+  },
+  {
+    label: 'Working Material',
+    value:
+      'Mentorship Topic #3. Confirm whether sessions use program review, athlete case studies, observation, certification support, or all of the above.',
   },
 ];
 
@@ -114,45 +145,12 @@ export default function CoachMentorshipPage() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.science-card', {
-        scrollTrigger: { trigger: '.science-grid', start: 'top 75%' },
-        y: 50,
-        stagger: 0.12,
-        duration: 0.7,
+      gsap.from('.mentor-animate', {
+        scrollTrigger: { trigger: pageRef.current, start: 'top 70%' },
+        y: 24,
+        stagger: 0.08,
+        duration: 0.55,
         ease: 'power2.out',
-      });
-
-      gsap.from('.leadership-card', {
-        scrollTrigger: { trigger: '.leadership-grid', start: 'top 75%' },
-        y: 50,
-        stagger: 0.12,
-        duration: 0.7,
-        ease: 'power2.out',
-      });
-
-      gsap.from('.audience-card', {
-        scrollTrigger: { trigger: '.audience-grid', start: 'top 75%' },
-        y: 40,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: 'power2.out',
-      });
-
-      gsap.from('.structure-row', {
-        scrollTrigger: { trigger: '.structure-list', start: 'top 80%' },
-        x: -30,
-        stagger: 0.15,
-        duration: 0.6,
-        ease: 'power2.out',
-      });
-
-      gsap.utils.toArray<HTMLElement>('.mentorship-heading').forEach((el) => {
-        gsap.from(el, {
-          scrollTrigger: { trigger: el, start: 'top 85%' },
-          y: 25,
-          duration: 0.6,
-          ease: 'power2.out',
-        });
       });
     }, pageRef);
 
@@ -163,29 +161,75 @@ export default function CoachMentorshipPage() {
     <div ref={pageRef}>
       <Helmet>
         <title>Coach Mentorship | TeamON Multisports</title>
-        <meta name="description" content="Applied sport science and leadership development for coaching professionals." />
+        <meta
+          name="description"
+          content="Coach mentorship for endurance coaches focused on planning, communication, sport science, and professional growth."
+        />
       </Helmet>
       <PageHero
         title="Coach Mentorship"
-        subtitle="Personal, science-grounded mentorship for coaching professionals who want clearer systems, better decisions, and stronger athlete relationships."
+        subtitle="Support for coaches who want clearer systems, better decisions, and stronger athlete relationships."
         breadcrumb="Programs / Coach Mentorship"
       />
 
       <section className="section-spacing">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mentorship-heading">
-            <p className="font-mono-label text-sm text-[#C41E3A] mb-3">Foundation</p>
-            <h2 className="text-section font-display text-[#1A1A1A]">Applied Sport Science</h2>
-            <div className="accent-rule w-20 mt-2 mb-6" />
-            <p className="text-[#4A4A4A] max-w-2xl text-lg mb-12">
-              Great coaching is built on understanding why training works, not just what
-              to prescribe. Mentorship connects the science to real coaching decisions.
+          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+            <div className="mentor-animate">
+              <p className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4">
+                WHY MENTORSHIP
+              </p>
+              <h2 className="text-section font-display text-[#1A1A1A] mb-4">
+                Coaches need
+                <br />
+                coaches too.
+              </h2>
+              <div className="accent-rule w-20 mb-6" />
+              <p className="text-[#4A4A4A] text-lg leading-relaxed">
+                Coaching is practical work. You learn by planning, watching,
+                adjusting, and reflecting. Mentorship gives coaches a place to
+                ask better questions and build better habits.
+              </p>
+            </div>
+
+            <div className="mentor-animate card-light p-6 lg:p-8">
+              <p className="font-mono-label text-xs text-[#C41E3A] mb-5">
+                Credentials to Confirm
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {CREDENTIALS.map((credential) => (
+                  <div key={credential} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#C41E3A] mt-0.5 shrink-0" />
+                    <span className="text-[#4A4A4A]">{credential}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-spacing bg-[#F8F8F8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mentor-animate max-w-3xl mb-12">
+            <p className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4">
+              WHAT WE WORK ON
+            </p>
+            <h2 className="text-section font-display text-[#1A1A1A] mb-4">
+              Sport science,
+              <br />
+              made coachable.
+            </h2>
+            <div className="accent-rule w-20 mb-6" />
+            <p className="text-[#4A4A4A] text-lg leading-relaxed">
+              The goal is not to sound more technical. The goal is to make
+              better decisions for real athletes in real training environments.
             </p>
           </div>
 
-          <div className="science-grid grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {SCIENCE_PILLARS.map((pillar) => (
-              <div key={pillar.title} className="science-card card-light flex items-start gap-5 p-6">
+              <article key={pillar.title} className="mentor-animate card-light flex items-start gap-5 p-6">
                 <div className="shrink-0 w-12 h-12 rounded-xl bg-[#C41E3A]/8 flex items-center justify-center">
                   <pillar.icon className="w-6 h-6 text-[#C41E3A]" />
                 </div>
@@ -193,32 +237,7 @@ export default function CoachMentorshipPage() {
                   <h3 className="font-display text-xl text-[#1A1A1A] mb-1">{pillar.title}</h3>
                   <p className="text-[#4A4A4A] leading-relaxed">{pillar.description}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-spacing bg-[#F8F8F8]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mentorship-heading">
-            <p className="font-mono-label text-sm text-[#C41E3A] mb-3">Growth</p>
-            <h2 className="text-section font-display text-[#1A1A1A]">Leadership Development</h2>
-            <div className="accent-rule w-20 mt-2 mb-6" />
-            <p className="text-[#4A4A4A] max-w-2xl text-lg mb-12">
-              Sport science gets you the plan. Leadership gets the buy-in. The
-              mentorship offer should develop both sides once the exact topics are confirmed.
-            </p>
-          </div>
-          <div className="leadership-grid grid md:grid-cols-3 gap-8">
-            {LEADERSHIP_AREAS.map((area) => (
-              <div key={area.title} className="leadership-card card-light text-center p-8">
-                <div className="w-14 h-14 rounded-full bg-[#C41E3A]/8 flex items-center justify-center mx-auto mb-5">
-                  <area.icon className="w-7 h-7 text-[#C41E3A]" />
-                </div>
-                <h3 className="font-display text-xl text-[#1A1A1A] mb-2">{area.title}</h3>
-                <p className="text-[#4A4A4A] leading-relaxed">{area.description}</p>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -226,56 +245,108 @@ export default function CoachMentorshipPage() {
 
       <section className="section-spacing">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mentorship-heading text-center">
-            <p className="font-mono-label text-sm text-[#C41E3A] mb-3">Audience</p>
-            <h2 className="text-section font-display text-[#1A1A1A]">Who It's For</h2>
-            <div className="accent-rule w-20 mx-auto mt-2 mb-6" />
-            <p className="text-[#4A4A4A] max-w-2xl mx-auto text-lg mb-14">
-              This mentorship is shaped around where each coach is in their development.
-            </p>
-          </div>
-          <div className="audience-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {AUDIENCE_TYPES.map((type) => (
-              <div key={type.title} className="audience-card group card-light p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <div className="w-14 h-14 rounded-full bg-[#C41E3A]/8 flex items-center justify-center mx-auto mb-5 transition-colors duration-300 group-hover:bg-[#C41E3A]/15">
-                  <type.icon className="w-7 h-7 text-[#C41E3A]" />
-                </div>
-                <h3 className="font-display text-lg text-[#1A1A1A] mb-2">{type.title}</h3>
-                <p className="text-sm text-[#4A4A4A] leading-relaxed">{type.description}</p>
-              </div>
-            ))}
+          <div className="grid lg:grid-cols-[0.75fr_1.25fr] gap-10 lg:gap-16">
+            <div className="mentor-animate">
+              <p className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4">
+                MENTORSHIP TOPICS
+              </p>
+              <h2 className="text-section font-display text-[#1A1A1A] mb-4">
+                The parts of coaching
+                <br />
+                that matter daily.
+              </h2>
+              <div className="accent-rule w-20 mb-6" />
+              <p className="text-[#4A4A4A] text-lg leading-relaxed">
+                Better coaches do not just write harder workouts. They build
+                trust, adapt to people, and create systems athletes can follow.
+              </p>
+            </div>
+
+            <div className="grid gap-5">
+              {MENTORSHIP_TOPICS.map((area) => (
+                <article key={area.title} className="mentor-animate card-light flex gap-4 p-6">
+                  <area.icon className="w-7 h-7 text-[#C41E3A] shrink-0" />
+                  <div>
+                    <h3 className="font-display text-xl text-[#1A1A1A] mb-2">{area.title}</h3>
+                    <p className="text-[#4A4A4A] leading-relaxed">{area.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="section-spacing bg-[#F8F8F8]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mentorship-heading">
-            <p className="font-mono-label text-sm text-[#C41E3A] mb-3">How It Works</p>
-            <h2 className="text-section font-display text-[#1A1A1A]">Mentorship Structure</h2>
-            <div className="accent-rule w-20 mt-2 mb-6" />
-            <p className="text-[#4A4A4A] max-w-2xl text-lg mb-12">
-              This should feel practical and specific: real conversations, real feedback,
-              and a clear development plan for each coach.
+          <div className="mentor-animate text-center max-w-3xl mx-auto mb-12">
+            <p className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4">
+              WHO IT IS FOR
             </p>
+            <h2 className="text-section font-display text-[#1A1A1A] mb-4">
+              A fit for coaches
+              <br />
+              who want feedback.
+            </h2>
+            <div className="accent-rule w-20 mx-auto mb-6" />
           </div>
-          <div className="structure-list max-w-3xl space-y-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {AUDIENCE_TYPES.map((type) => (
+              <article key={type.title} className="mentor-animate card-light p-6 text-center">
+                <div className="w-14 h-14 rounded-full bg-[#C41E3A]/8 flex items-center justify-center mx-auto mb-5">
+                  <type.icon className="w-7 h-7 text-[#C41E3A]" />
+                </div>
+                <h3 className="font-display text-lg text-[#1A1A1A] mb-2">{type.title}</h3>
+                <p className="text-sm text-[#4A4A4A] leading-relaxed">{type.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-spacing">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mentor-animate max-w-3xl mb-12">
+            <p className="font-mono-label text-[11px] text-[#C41E3A] tracking-widest mb-4">
+              HOW IT WORKS
+            </p>
+            <h2 className="text-section font-display text-[#1A1A1A] mb-4">
+              Simple structure.
+              <br />
+              Useful feedback.
+            </h2>
+            <div className="accent-rule w-20 mb-6" />
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            {PROCESS.map((step) => (
+              <article key={step.label} className="mentor-animate card-light p-6">
+                <div className="w-10 h-10 rounded-lg bg-[#C41E3A] text-white flex items-center justify-center font-mono-label text-xs mb-5">
+                  {step.label}
+                </div>
+                <h3 className="font-display text-xl text-[#1A1A1A] mb-2">{step.title}</h3>
+                <p className="text-[#4A4A4A] leading-relaxed">{step.description}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="structure-list max-w-4xl space-y-5">
             {STRUCTURE_ITEMS.map((item) => (
-              <div key={item.label} className="structure-row card-light flex flex-col sm:flex-row sm:items-start gap-4 p-6">
+              <article key={item.label} className="mentor-animate card-light flex flex-col sm:flex-row sm:items-start gap-4 p-6">
                 <ShieldCheck className="w-6 h-6 text-[#C41E3A] shrink-0" />
                 <div>
                   <h3 className="font-display text-lg text-[#1A1A1A] mb-1">{item.label}</h3>
                   <p className="text-[#4A4A4A] leading-relaxed">{item.value}</p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       <CTABanner
-        heading="Ready to Grow as a Coach?"
-        subheading="Apply for a mentorship conversation. We will explore your goals and confirm whether working together is the right fit."
+        heading="Ready to grow as a coach?"
+        subheading="Apply for a mentorship conversation and bring your coaching questions, athlete cases, and development goals."
         variant="apply"
       />
     </div>
